@@ -1,15 +1,21 @@
-import { ChangeDetectionStrategy, Component, forwardRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RangeValidators } from './range-validator';
+import { ChangeDetectionStrategy, Component, forwardRef, HostBinding, Input, OnChanges, OnDestroy, OnInit, Optional, Self, SimpleChanges } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NgControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 type selectOptions = { firstOptions: [{ value: unknown, name: string }], secondOptions: [{ value: unknown, name: string }] };
-type selectValues = { firstSelectValue: unknown, secondSelectValue: unknown };
+type selectValues = { selectFirst: unknown, selectSecond: unknown };
 
 @Component({
   selector: 'ngx-range',
   template: `
-   <span *ngIf='rangeGroup?.errors?.range' class="error">First value should be smaller than the second!</span>
-   <div role="group" [formGroup]='rangeGroup'>
+   <span *ngIf='rangeGroup?.errors?.largerFirst' class="error">First value should be smaller than the second!</span>
+   <span *ngIf='rangeGroup?.errors?.largerSecond' class="error">Second value should be smaller than the first!</span>
+
+
+   varmı{{
+    rangeGroup.errors?.length
+
+   }}<div role="group" [formGroup]='rangeGroup' [ngClass]="{error: rangeGroup.errors?.length>0}">
     <mat-form-field appearance="outline">
         <mat-select formControlName="selectFirst">
           <mat-option *ngFor="let option of selectOptions.firstOptions" [value]="option.value">{{option.name}}</mat-option>
@@ -34,14 +40,9 @@ type selectValues = { firstSelectValue: unknown, secondSelectValue: unknown };
     }
     `
   ],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useClass: NgxRangeComponent,
-    multi: true
-  }],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccessor, OnChanges {
 
   static nextId = 0;
 
@@ -86,18 +87,25 @@ export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   rangeGroup: FormGroup;
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, @Self() @Optional() public ngControl: NgControl) {
+    this.ngControl.valueAccessor = this;
     this.rangeGroup = this._fb.group({
       selectFirst: null,
       selectSecond: null
     });
-    this.rangeGroup.setValidators(RangeValidators.largerSecond);
   }
 
   onChange;
   onTouched;
 
   ngOnInit(): void {
+    this.rangeGroup.valueChanges.pipe(
+      debounceTime(300),
+    ).subscribe(formValues => {
+      if (formValues.selectFirst !== null && formValues.selectSecond !== null) {
+        this.onChange(formValues);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -106,10 +114,19 @@ export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccesso
   writeValue(obj: any): void {
     this.value = obj;
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    isDisabled ? this.rangeGroup.disable : this.rangeGroup.enable;
   }
 }

@@ -1,7 +1,10 @@
 Form Value: {{ value}}
-<hr/>
+<hr />
 
-<form [formGroup]="test">
+<span *ngIf="form.errors?.largerFirst"></span>
+<span *ngIf="form.errors?.largerSecond"></span>
+
+<form [formGroup]="form">
   Range 1:
   <ngx-range formControlName="range" [selectOptions]="ranges"></ngx-range>
   <br>
@@ -23,5 +26,7 @@ Form Value: {{ value}}
   </table>
   Range 2:
   <ngx-range formControlName="range2" [selectOptions]="ranges"></ngx-range>
-</form>
 
+  Range 3:
+  <ngx-range formControlName="range3" [selectOptions]="ranges"></ngx-range>
+</form>
