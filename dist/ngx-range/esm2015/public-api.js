@@ -1,0 +1,6 @@
+/*
+ * Public API Surface of ngx-range
+ */
+export * from './lib/ngx-range.component';
+export * from './lib/ngx-range.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1yYW5nZS9zcmMvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsMkJBQTJCLENBQUM7QUFDMUMsY0FBYyx3QkFBd0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2Ygbmd4LXJhbmdlXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LXJhbmdlLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtcmFuZ2UubW9kdWxlJztcbiJdfQ==
