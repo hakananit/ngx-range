@@ -9,8 +9,10 @@ type selectValues = { selectFirst: unknown, selectSecond: unknown };
 @Component({
   selector: 'ngx-range',
   template: `
-   <div role="group" [formGroup]='rangeGroup' [ngClass]="{error: errors}">
+   <div role="group" [formGroup]='rangeGroup' [ngClass]="{'ring-4 ring-red-100 rounded-lg shadow-sm bg-red-300': errors}">
     <mat-form-field appearance="outline">
+    <mat-label>{{label}}</mat-label>
+
         <mat-select formControlName="selectFirst">
           <mat-option *ngFor="let option of selectOptions.firstOptions" [value]="option.value">{{option.name}}</mat-option>
         </mat-select>
@@ -29,10 +31,6 @@ type selectValues = { selectFirst: unknown, selectSecond: unknown };
     .select-second{
       padding-left: 5px;
     }
-    .error{
-      border: 1px solid red;
-      border-radius: 2px;
-    }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -43,6 +41,15 @@ export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   @HostBinding()
   id = `ngx-range-${NgxRangeComponent.nextId++}`;
+
+  private _label: string;
+  @Input()
+  set label(value) {
+    this._label = value;
+  }
+  get label() {
+    return this._label;
+  }
 
   private _selectOptions: selectOptions;
   @Input()

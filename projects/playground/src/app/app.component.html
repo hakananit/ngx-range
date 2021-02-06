@@ -10,7 +10,7 @@ Form Value: {{ value}}
   <span *ngIf="form.get('range').hasError('largerSecond')">Second value should be larger!</span>
   <br>
 
-  <ngx-range formControlName="range" [selectOptions]="ranges"></ngx-range>
+  <ngx-range label="Age range" formControlName="range" [selectOptions]="ranges"></ngx-range>
   <br>
   <table>
     <tr>
@@ -35,16 +35,16 @@ Form Value: {{ value}}
   <span *ngIf="form.get('range2').hasError('largerFirst')">First value should be larger!</span>
   <br>
 
-  <ngx-range formControlName="range2" [selectOptions]="ranges"></ngx-range>
+  <ngx-range label="Weight range" formControlName="range2" [selectOptions]="ranges"></ngx-range>
   <br>
 
   Range 3:
   <br>
 
-  <ngx-range formControlName="range3" [selectOptions]="ranges"></ngx-range>
+  <ngx-range label="Height range" formControlName="range3" [selectOptions]="ranges"></ngx-range>
   <br>
 
   Range 4:
   <br>
-  <ngx-range formControlName="range4" [selectOptions]="ranges"></ngx-range>
+  <ngx-range label="Score range" formControlName="range4" [selectOptions]="ranges"></ngx-range>
 </form>

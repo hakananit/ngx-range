@@ -22,7 +22,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "projects/ngx-range/src/test.ts",
             "tsConfig": "projects/ngx-range/tsconfig.spec.json",
@@ -55,8 +55,9 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
+            "extraWebpackConfig": "webpack.config.js",
             "outputPath": "dist/playground",
             "index": "projects/playground/src/index.html",
             "main": "projects/playground/src/main.ts",
@@ -103,9 +104,10 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "playground:build"
+            "browserTarget": "playground:build",
+            "extraWebpackConfig": "webpack.config.js"
           },
           "configurations": {
             "production": {
