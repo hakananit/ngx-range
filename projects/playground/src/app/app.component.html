@@ -1,50 +1,50 @@
-Form Value: {{ value}}
-<hr />
-
-
 <span *ngIf="form.invalid && form.touched">form has errors</span>
-<form [formGroup]="form">
-  Range 1:
-  <br>
+<div class="grid grid-cols-6 bg-gray-50">
+  <span class="col-span-2 bg-green-50">
+    <pre>Form Value: {{ value | json }}</pre>
+  </span>
+  <form class="col-start-3 col-span-3" [formGroup]="form">
+    Range 1:
+    <br>
+    <span *ngIf="form.get('range').hasError('largerSecond')">Second value should be larger!</span>
+    <br>
 
-  <span *ngIf="form.get('range').hasError('largerSecond')">Second value should be larger!</span>
-  <br>
+    <ngx-range label="Age range" formControlName="range" [selectOptions]="ranges"></ngx-range>
+    <br>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="lastname">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
-  <ngx-range label="Age range" formControlName="range" [selectOptions]="ranges"></ngx-range>
-  <br>
-  <table>
-    <tr>
-      <td>
-        <mat-form-field>
-          <mat-label>First name</mat-label>
-          <input matInput formControlName="name">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <mat-label>Last name</mat-label>
-          <input matInput formControlName="lastname">
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+    Range 2:
+    <br>
 
-  Range 2:
-  <br>
+    <span *ngIf="form.get('range2').hasError('largerFirst')">First value should be larger!</span>
+    <br>
 
-  <span *ngIf="form.get('range2').hasError('largerFirst')">First value should be larger!</span>
-  <br>
+    <ngx-range label="Weight range" formControlName="range2" [selectOptions]="ranges"></ngx-range>
+    <br>
 
-  <ngx-range label="Weight range" formControlName="range2" [selectOptions]="ranges"></ngx-range>
-  <br>
+    Range 3:
+    <br>
 
-  Range 3:
-  <br>
+    <ngx-range label="Height range" formControlName="range3" [selectOptions]="ranges"></ngx-range>
+    <br>
 
-  <ngx-range label="Height range" formControlName="range3" [selectOptions]="ranges"></ngx-range>
-  <br>
-
-  Range 4:
-  <br>
-  <ngx-range label="Score range" formControlName="range4" [selectOptions]="ranges"></ngx-range>
-</form>
+    Range 4:
+    <br>
+    <ngx-range label="Score range" formControlName="range4" [selectOptions]="ranges"></ngx-range>
+  </form>
+  <div>

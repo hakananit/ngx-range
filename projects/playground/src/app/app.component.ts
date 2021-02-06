@@ -28,6 +28,6 @@ export class AppComponent {
   }
 
   get value() {
-    return JSON.stringify(this.form.value);
+    return this.form.value;
   }
 }
