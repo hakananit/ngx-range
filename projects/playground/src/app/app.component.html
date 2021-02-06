@@ -1,11 +1,15 @@
 Form Value: {{ value}}
 <hr />
 
-<span *ngIf="form.errors?.largerFirst"></span>
-<span *ngIf="form.errors?.largerSecond"></span>
 
+<span *ngIf="form.invalid && form.touched">form has errors</span>
 <form [formGroup]="form">
   Range 1:
+  <br>
+
+  <span *ngIf="form.get('range').hasError('largerSecond')">Second value should be larger!</span>
+  <br>
+
   <ngx-range formControlName="range" [selectOptions]="ranges"></ngx-range>
   <br>
   <table>
@@ -24,9 +28,23 @@ Form Value: {{ value}}
       </td>
     </tr>
   </table>
+
   Range 2:
+  <br>
+
+  <span *ngIf="form.get('range2').hasError('largerFirst')">First value should be larger!</span>
+  <br>
+
   <ngx-range formControlName="range2" [selectOptions]="ranges"></ngx-range>
+  <br>
 
   Range 3:
+  <br>
+
   <ngx-range formControlName="range3" [selectOptions]="ranges"></ngx-range>
+  <br>
+
+  Range 4:
+  <br>
+  <ngx-range formControlName="range4" [selectOptions]="ranges"></ngx-range>
 </form>

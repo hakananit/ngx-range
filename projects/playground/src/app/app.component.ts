@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RangeValidators } from 'projects/ngx-range/src/public-api';
 
 @Component({
@@ -13,11 +13,12 @@ export class AppComponent {
 
   constructor(private _fb: FormBuilder) {
     this.form = this._fb.group({
-      range: ['', RangeValidators.largerSecond],
-      name: [''],
-      lastname: [''],
-      range2: ['', RangeValidators.largerFirst],
-      range3: [ {selectFirst: 12, selectSecond: 35}]
+      range: [{ selectFirst: 55, selectSecond: 35 }, RangeValidators.largerSecond],
+      name: [null],
+      lastname: ['', Validators.required],
+      range2: [null, RangeValidators.largerFirst],
+      range3: { selectFirst: 12, selectSecond: 35 },
+      range4: { value: { selectFirst: 4, selectSecond: 5 }, disabled: true }
     });
     const values = [];
     for (let index = 0; index < 100; index++) {

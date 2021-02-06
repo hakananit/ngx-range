@@ -1,1 +1,1 @@
-{"version":3,"file":"public-api.d.ts","sourceRoot":"","sources":["../../projects/ngx-range/src/public-api.ts"],"names":[],"mappings":"AAIA,cAAc,2BAA2B,CAAC;AAC1C,cAAc,wBAAwB,CAAC"}
+{"version":3,"file":"public-api.d.ts","sourceRoot":"","sources":["../../projects/ngx-range/src/public-api.ts"],"names":[],"mappings":"AAIA,cAAc,2BAA2B,CAAC;AAC1C,cAAc,wBAAwB,CAAC;AACvC,cAAc,uBAAuB,CAAC"}
