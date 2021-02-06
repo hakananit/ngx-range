@@ -2,6 +2,7 @@ Form Value: {{ value}}
 <hr/>
 
 <form [formGroup]="test">
+  Range 1:
   <ngx-range formControlName="range" [selectOptions]="ranges"></ngx-range>
   <br>
   <table>
@@ -20,5 +21,7 @@ Form Value: {{ value}}
       </td>
     </tr>
   </table>
+  Range 2:
+  <ngx-range formControlName="range2" [selectOptions]="ranges"></ngx-range>
 </form>
 

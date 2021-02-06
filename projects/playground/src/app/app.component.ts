@@ -11,7 +11,7 @@ export class AppComponent {
   ranges;
 
   constructor(private _fb: FormBuilder) {
-    this.test = this._fb.group({ range: null, name: null, lastname: null });
+    this.test = this._fb.group({ range: null, name: null, lastname: null, range2: null });
     let values = [];
     for (let index = 0; index < 100; index++) {
       values.push({ value: index, name: index });

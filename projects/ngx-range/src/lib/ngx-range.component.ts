@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, forwardRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RangeValidators } from './range-validator';
 
-type selectOptions = { firstOptions: [{value: unknown, name: string}], secondOptions: [{value: unknown, name: string}] };
+type selectOptions = { firstOptions: [{ value: unknown, name: string }], secondOptions: [{ value: unknown, name: string }] };
 type selectValues = { firstSelectValue: unknown, secondSelectValue: unknown };
 
 @Component({
   selector: 'ngx-range',
   template: `
+   <span *ngIf='rangeGroup?.errors?.range' class="error">First value should be smaller than the second!</span>
    <div role="group" [formGroup]='rangeGroup'>
     <mat-form-field appearance="outline">
         <mat-select formControlName="selectFirst">
@@ -27,6 +29,9 @@ type selectValues = { firstSelectValue: unknown, secondSelectValue: unknown };
     .select-second{
       padding-left: 5px;
     }
+    .error{
+      color: red;
+    }
     `
   ],
   providers: [{
@@ -39,7 +44,9 @@ type selectValues = { firstSelectValue: unknown, secondSelectValue: unknown };
 export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   static nextId = 0;
-  @HostBinding() id = `ngx-range-${NgxRangeComponent.nextId++}`;
+
+  @HostBinding()
+  id = `ngx-range-${NgxRangeComponent.nextId++}`;
 
   private _formControl: FormControl;
   @Input()
@@ -84,6 +91,7 @@ export class NgxRangeComponent implements OnInit, OnDestroy, ControlValueAccesso
       selectFirst: null,
       selectSecond: null
     });
+    this.rangeGroup.setValidators(RangeValidators.largerSecond);
   }
 
   onChange;
