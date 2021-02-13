@@ -11,6 +11,8 @@ export class AppComponent {
   form: FormGroup;
   ranges;
 
+  priceRangeValue = { selectFirst: 99, selectSecond: 99 };
+
   constructor(private _fb: FormBuilder) {
     this.form = this._fb.group({
       range: [{ selectFirst: 55, selectSecond: 35 }, RangeValidators.largerSecond],

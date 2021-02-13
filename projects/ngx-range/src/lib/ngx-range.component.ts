@@ -12,7 +12,6 @@ type selectValues = { selectFirst: unknown, selectSecond: unknown };
    <div role="group" [formGroup]='rangeGroup' [ngClass]="{'error': errors}">
     <mat-form-field appearance="outline">
     <mat-label>{{label}}</mat-label>
-
         <mat-select formControlName="selectFirst">
           <mat-option *ngFor="let option of selectOptions.firstOptions" [value]="option.value">{{option.name}}</mat-option>
         </mat-select>

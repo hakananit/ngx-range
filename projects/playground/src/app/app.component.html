@@ -48,3 +48,8 @@
     <ngx-range label="Score range" formControlName="range4" [selectOptions]="ranges"></ngx-range>
   </form>
   <div>
+
+  Template Driven Forms Example: NgModel Value: {{priceRangeValue | json }}
+  <form #templateDriven="ngForm">
+    <ngx-range name="priceRange" label="Price range" [(ngModel)]="priceRangeValue" [selectOptions]="ranges"></ngx-range>
+  </form>

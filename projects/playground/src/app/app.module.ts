@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxRangeModule } from 'projects/ngx-range/src/public-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +16,8 @@ import { AppComponent } from './app.component';
     NgxRangeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
