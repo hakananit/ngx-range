@@ -22,7 +22,7 @@ This component basis on Angular Material component.
 
 ## Playground
 
-[ngx-range](/projects/playground/src/assets/ngx-range.png)
+![ngx-range](/projects/playground/src/assets/ngx-range.png)
 
 # Contribution
 
