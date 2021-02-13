@@ -1,6 +1,7 @@
 <span *ngIf="form.invalid && form.touched">form has errors</span>
 <div class="grid grid-cols-6 bg-gray-50">
   <span class="col-span-2 bg-green-50">
+    <h2>Reactive Forms Example</h2>
     <pre>Form Value: {{ value | json }}</pre>
   </span>
   <form class="col-start-3 col-span-3" [formGroup]="form">
@@ -49,7 +50,12 @@
   </form>
   <div>
 
-  Template Driven Forms Example: NgModel Value: {{priceRangeValue | json }}
-  <form #templateDriven="ngForm">
-    <ngx-range name="priceRange" label="Price range" [(ngModel)]="priceRangeValue" [selectOptions]="ranges"></ngx-range>
-  </form>
+    <h2>
+
+      Template Driven Forms Example:
+    </h2>
+    NgModel Value: {{priceRangeValue | json }}
+    <form #templateDriven="ngForm">
+      <ngx-range name="priceRange" label="Price range" [(ngModel)]="priceRangeValue" [selectOptions]="ranges">
+      </ngx-range>
+    </form>
