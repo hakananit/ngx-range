@@ -20,6 +20,10 @@ This component basis on Angular Material component.
 4. Interface `selectOptions`: `type selectOptions = { firstOptions: [{ value: unknown, name: string }], secondOptions: [{ value: unknown, name: string }] };``
 5. Interface `value`: `type selectValues = { selectFirst: unknown, selectSecond: unknown };`
 
+## Playground
+
+[ngx-range]('./projects/playground/src/assets/ngx-range.png')
+
 # Contribution
 
 ## NgxRangeWorkspace
