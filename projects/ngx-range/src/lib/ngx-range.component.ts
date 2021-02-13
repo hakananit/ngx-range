@@ -9,7 +9,7 @@ type selectValues = { selectFirst: unknown, selectSecond: unknown };
 @Component({
   selector: 'ngx-range',
   template: `
-   <div role="group" [formGroup]='rangeGroup' [ngClass]="{'ring-4 ring-red-100 rounded-lg shadow-sm bg-red-300': errors}">
+   <div role="group" [formGroup]='rangeGroup' [ngClass]="{'error': errors}">
     <mat-form-field appearance="outline">
     <mat-label>{{label}}</mat-label>
 
@@ -27,6 +27,11 @@ type selectValues = { selectFirst: unknown, selectSecond: unknown };
   styles: [
     `div{
       display: inline-block;
+    }
+    .error {
+      border: 1px solid red;
+      border-radius: 5px;
+      padding: 10px;
     }
     .select-second{
       padding-left: 5px;
